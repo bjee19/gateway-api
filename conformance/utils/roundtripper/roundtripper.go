@@ -226,7 +226,13 @@ func (d *DefaultRoundTripper) defaultRoundTrip(request Request, transport http.R
 		tlog.Logf(request.T, "Sending Request:\n%s\n\n", formatDump(dump, "< "))
 	}
 
-	resp, err := client.Do(req)
+	var resp *http.Response
+	if request.Protocol == H2CPriorKnowledgeProtocol {
+		resp, err = transport.RoundTrip(req)
+	} else {
+		resp, err = client.Do(req)
+	}
+
 	if err != nil {
 		return nil, nil, err
 	}
