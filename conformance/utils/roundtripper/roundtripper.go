@@ -228,6 +228,7 @@ func (d *DefaultRoundTripper) defaultRoundTrip(request Request, transport http.R
 
 	var resp *http.Response
 	if request.Protocol == H2CPriorKnowledgeProtocol {
+		fmt.Println("We are doing the transport roundtrip")
 		resp, err = transport.RoundTrip(req)
 	} else {
 		resp, err = client.Do(req)
