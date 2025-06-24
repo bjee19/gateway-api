@@ -184,7 +184,7 @@ func runH2CServer(h2cPort string, errchan chan<- error) {
 			fmt.Fprint(w, "This is the proto: ", r.Proto)
 			fmt.Fprint(w, r.Header)
 			w.WriteHeader(http.StatusBadRequest)
-			fmt.Fprint(w, "Expected h2c request")
+			fmt.Fprint(w, "Expected h2c requesterrrrrrrrr")
 			return
 		}
 
