@@ -181,6 +181,9 @@ func delayResponse(request *http.Request) error {
 func runH2CServer(h2cPort string, errchan chan<- error) {
 	handler := http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		if r.ProtoMajor != 2 && r.Header.Get("Upgrade") != "h2c" {
+			fmt.Println("I am the handler in h2c server")
+			fmt.Println("This is the proto: ", r.Proto)
+			fmt.Println(r.Header)
 			w.WriteHeader(http.StatusBadRequest)
 			fmt.Fprint(w, "Expected h2c request")
 			return
